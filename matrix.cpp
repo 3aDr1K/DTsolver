@@ -1,4 +1,4 @@
-#include "Matrix.h"
+Ôªø#include "Matrix.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -12,7 +12,7 @@ Matrix::Matrix(const std::string& filename) {
 
     std::string line;
     std::vector<std::vector<double>> tempData;
-    int expected—ols = -1;
+    int expectedCols = -1;
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::vector<double> row;
@@ -30,10 +30,10 @@ Matrix::Matrix(const std::string& filename) {
             row.push_back(value);
         }
 
-        if (expected—ols == -1) {
-            expected—ols = row.size();
+        if (expectedCols == -1) {
+            expectedCols = row.size();
         }
-        else if (row.size() != expected—ols) {
+        else if (row.size() != expectedCols) {
             throw std::runtime_error("Inconsistent number of columns in the matrix");
         }
 
@@ -41,7 +41,7 @@ Matrix::Matrix(const std::string& filename) {
     }
 
     rows = tempData.size();
-    cols = expected—ols;
+    cols = expectedCols;
 
     if (rows == 0 || cols == 0) {
         throw std::runtime_error("Matrix is empty or invalid");
